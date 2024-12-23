@@ -1,36 +1,30 @@
-# daily_reminder.py
+# Step 1: Ask user for task description
+task = input("Enter your task: ")
 
-def main():
-    try:
-        # Prompt for task input
-        task = input("Enter your task for today: ").strip()
-        priority = input("Enter the priority level (high, medium, low): ").strip().lower()
-        time_bound = input("Is the task time-bound? (yes or no): ").strip().lower()
+# Step 2: Ask user for priority level
+priority = input("Priority (high/medium/low): ").lower()
 
-        # Process the task based on priority
-        match priority:
-            case "high":
-                reminder = f"Task: '{task}' has HIGH priority."
-            case "medium":
-                reminder = f"Task: '{task}' has MEDIUM priority."
-            case "low":
-                reminder = f"Task: '{task}' has LOW priority."
-            case _:
-                print("Invalid priority level. Please enter 'high', 'medium', or 'low'.")
-                return
+# Step 3: Ask if the task is time-bound
+time_bound = input("Is it time-bound? (yes/no): ").lower()
 
-        # Check if the task is time-bound
-        if time_bound == "yes":
-            reminder += " It requires immediate attention today!"
-        elif time_bound != "no":
-            print("Invalid input for time sensitivity. Please enter 'yes' or 'no'.")
-            return
+# Step 4: Process task and provide reminder based on priority and time sensitivity
 
-        # Print the customized reminder
-        print(reminder)
+# Use match-case for priority
+match priority:
+    case 'high':
+        priority_message = "high priority task"
+    case 'medium':
+        priority_message = "medium priority task"
+    case 'low':
+        priority_message = "low priority task"
+    case _:
+        priority_message = "unknown priority level"
 
-    except Exception as e:
-        print(f"An error occurred: {e}")
+# If the task is time-bound, modify the reminder message
+if time_bound == "yes":
+    reminder = f"Reminder: '{task}' is a {priority_message} that requires immediate attention today!"
+else:
+    reminder = f"Note: '{task}' is a {priority_message}. Consider completing it when you have free time."
 
-if __name__ == "__main__":
-    main()
+# Step 5: Output the reminder message
+print(f"Reminder: {reminder}")  # This is the line that should be checked
